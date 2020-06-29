@@ -59,15 +59,61 @@ func fillCentroids(data *[][]float64, centroids *[][]float64) {
 	}
 }
 
-func (m *KMeansModel) init(nCentroids int) {
+// Init : Initializes the model
+func (m *KMeansModel) Init(name string, nCentroids int) {
+	m.Name = name
 	m.NumCentroids = nCentroids
 	m.Centroids = make([][]float64, nCentroids)
 	m.Clusters = make([][]Point, nCentroids)
 	fillCentroids(&m.Data.Rows, &m.Centroids)
 }
 
-func (m *KMeansModel) run(iterations int) {
+func (m *KMeansModel) updateCentroids() {
+	var newCentroid = make([][]float64, len(m.Centroids), len(m.Centroids))
+	for i := 0; i < len(newCentroid); i++ {
+		newCentroid[i] = make([]float64, len(m.Centroids[0]), len(m.Centroids[0]))
+		//for j := 0; j < len(m.Clusters); j++ {
+		for k := 0; k < len(m.Clusters[i]); k++ {
+			rowIndex := (m.Clusters[i][k]).rowIndex
+			newCentroid[i] = RowSum(newCentroid[i], m.Data.Rows[rowIndex])
+		}
+		//}
+		for k := 0; k < len(newCentroid[i]); k++ {
+			newCentroid[i][k] /= float64(len(m.Clusters[i]))
+		}
+	}
+	m.Centroids = newCentroid
+}
 
+func (m *KMeansModel) singlePass() {
+	for i := 0; i < len(m.Data.Rows); i++ {
+		var minDist float64 = 1000000000.0 // Pseudo +INF
+		var centroidNum int = -1
+		for j := 0; j < len(m.Centroids); j++ {
+			eculidDist := EuclideanDistance(m.Data.Rows[i], m.Centroids[j])
+			if eculidDist < minDist {
+				minDist = eculidDist
+				centroidNum = j
+			}
+		}
+		var p = Point{distance: minDist, rowIndex: i} // storing distance form centroid and row number in table
+		m.Clusters[centroidNum] = append(m.Clusters[centroidNum], p)
+	}
+	// make cluster array empty again for new pass
+}
+
+// Run : Runs model for fixed number of iterations
+func (m *KMeansModel) Run(iterations int) {
+	m.Iterations = iterations
+	for i := 0; i < iterations; i++ {
+		m.singlePass()
+		m.updateCentroids()
+		if i != iterations-1 {
+			for j := 0; j < len(m.Clusters); j++ {
+				m.Clusters[j] = nil // making clusters empty again if not last iteration
+			}
+		}
+	}
 }
 
 // Used for printing the model

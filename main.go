@@ -21,7 +21,9 @@ func main() {
 
 	var model KMeansModel
 	model.Data = t
-	model.init(1)
+	model.Init("Dummy Model", 3)
+	// fmt.Println(model)
+	model.Run(10000000)
 	fmt.Println(model)
 	// fmt.Println(t)
 }
