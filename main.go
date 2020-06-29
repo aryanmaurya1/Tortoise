@@ -17,13 +17,10 @@ func main() {
 	t.Rows = append(t.Rows, []float64{1, 2, 3})
 	t.Rows = append(t.Rows, []float64{100, 200, 300})
 	t.Rows = append(t.Rows, []float64{0, 0, 0})
-	// fmt.Println(EuclideanDistance(t.Rows[0], t.Rows[1]))
 
 	var model KMeansModel
 	model.Data = t
 	model.Init("Dummy Model", 3)
-	// fmt.Println(model)
-	model.Run(10000000)
+	model.Run(100000)
 	fmt.Println(model)
-	// fmt.Println(t)
 }
