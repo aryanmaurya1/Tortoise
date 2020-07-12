@@ -1,3 +1,22 @@
+/*
+ Model will return a 2D array of Point. (Cluster Array)
+
+				type Point struct {
+					distance float32
+					rowIndex int
+				}
+
+
+ dX = Euclean Distance from centroid X.
+ iX = Zero based index of row in Table.
+
+					[[{d0, i0}, {d1, i1}, {d2, i2}], <- Rows in cluster 0
+					 [{d0, i0}, {d1, i1}, {d2, i2}], <- Rows in cluster 1
+					 [{d0, i0}, {d1, i1}, {d2, i2}], <- Rows in cluster 2
+					 [{d0, i0}, {d1, i1}, {d2, i2}]] <- Rows in cluster 3
+
+*/
+
 package main
 
 import (
