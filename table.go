@@ -5,7 +5,7 @@ import "fmt"
 // Table : Basic datatype (2D Matrix)
 type Table struct {
 	Header []string
-	Rows   [][]float64
+	Rows   [][]float32
 }
 
 // Representation of Table
