@@ -2,7 +2,8 @@ package main
 
 import "fmt"
 
-// Table : Basic datatype (2D Matrix)
+// Table : Basic datatype (2D Matrix), contains a header i.e name of
+// Columns and Rows for storing data.
 type Table struct {
 	Header []string
 	Rows   [][]float32

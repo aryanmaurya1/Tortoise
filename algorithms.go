@@ -4,7 +4,7 @@ import (
 	"math"
 )
 
-// EuclideanDistance : calculates traditional euclidean distance
+// EuclideanDistance : calculates traditional euclidean distance.
 func EuclideanDistance(p1, p2 []float32) float32 {
 	if len(p1) != len(p2) {
 		return -1
@@ -16,7 +16,7 @@ func EuclideanDistance(p1, p2 []float32) float32 {
 	return float32(math.Sqrt(float64(sqrSummation)))
 }
 
-// SquaredMeanError :
+// SquaredMeanError : Calculates the squared mean error of prediction and actual value.
 func SquaredMeanError(prediction, actual []float32) float32 {
 	m := len(prediction)
 	diff := RowiseSubtract(prediction, actual)
@@ -26,7 +26,7 @@ func SquaredMeanError(prediction, actual []float32) float32 {
 	return (1 / (2 * float32(m))) * RowSum(diff)
 }
 
-// Gradient :
+// Gradient : Calculate Gradient based on the predictions made by model.
 func Gradient(prediction, actual []float32, t Table) []float32 {
 	return nil
 

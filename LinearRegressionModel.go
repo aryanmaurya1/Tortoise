@@ -1,6 +1,6 @@
 package main
 
-// LinearRegressionModelTrainer : Implementation of multi-variate linear regression
+// LinearRegressionModelTrainer : Implementation of multi-variate linear regression.
 type LinearRegressionModelTrainer struct {
 	xData          Table
 	yData          []float32
@@ -12,10 +12,10 @@ type LinearRegressionModelTrainer struct {
 	costFunc       func([]float32, []float32) float32
 }
 
-// LinearRegressionModelPredicter :
+// LinearRegressionModelPredicter : Used for making prediction on trained model.
+// Parameters are transferred from a trained model (structure) by calling TransferParams functions.
 type LinearRegressionModelPredicter struct {
 	xData       Table
-	yData       []float32
 	parameters  []float32
 	predictions []float32
 }
