@@ -2,10 +2,11 @@ package main
 
 import (
 	"fmt"
+	"tortoise/tortoise"
 )
 
 func main() {
-	var t Table
+	var t tortoise.Table
 
 	t.Header = []string{"A", "B", "C"}
 	t.Rows = append(t.Rows, []float32{1, 2, 3})
@@ -18,7 +19,7 @@ func main() {
 	t.Rows = append(t.Rows, []float32{100, 200, 300})
 	t.Rows = append(t.Rows, []float32{0, 0, 0})
 
-	var model KMeansModel
+	var model tortoise.KMeansModel
 	model.Data = t
 	model.Init("Dummy Model", 3)
 	model.Run(100000)
