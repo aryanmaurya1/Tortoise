@@ -16,3 +16,6 @@ serving as a prototype of the cluster. This results in a partitioning of the dat
 <p>
 The problem is computationally difficult (NP-hard); however, efficient heuristic algorithms converge quickly to a local optimum.
 </p>
+
+
+<b><i>Package Documentation and examples are under development. You can find basic documentation inside source files.</i></b>
